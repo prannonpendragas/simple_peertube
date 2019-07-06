@@ -5,6 +5,9 @@ base:
   'tube_dns:enabled:True':
     - match: pillar
     - tube_dns
+  'tube_postgresql:enabled:True':
+    - match: pillar
+    - tube_postgresql
   'tube_openldap:enabled:True':
     - match: pillar
     - tube_openldap

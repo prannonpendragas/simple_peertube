@@ -1,6 +1,9 @@
 base:
+  '*data*':
+    - tube_postgresql
   '*master*':
     - tube_openldap
+    - tube_rundeck
     - tube_salt
   '*':
     - tube_chronyd

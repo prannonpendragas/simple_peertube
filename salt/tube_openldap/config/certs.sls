@@ -32,6 +32,6 @@ manage_certificates:
       - 'cn=config':
         - replace:
             olcTLSCACertificateFile: /etc/ssl/private/ca.crt
-            olcTLSCertificateFile: /etc/ssl/private/tube-openldap.service.crt
-            olcTLSCertificateKeyFile: /etc/ssl/private/tube-openldap.service.key
+            olcTLSCertificateFile: /etc/ssl/private/{{ pillar.tube.vars.master_domain }}.crt
+            olcTLSCertificateKeyFile: /etc/ssl/private/{{ pillar.tube.vars.master_domain }}.key
             olcTLSDHParamFile: /etc/ssl/private/dhparams.pem
