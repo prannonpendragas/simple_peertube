@@ -15,3 +15,4 @@ base:
     - tube_chronyd
     - tube_default
     - tube_iptables
+    - tube_sssd

@@ -9,3 +9,4 @@ base:
     - tube_iptables
     - tube_openldap.client
     - tube_pki
+    - tube_sssd
