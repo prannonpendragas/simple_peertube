@@ -15,7 +15,7 @@ manage_rootdn:
             olcRootDN: "{{ pillar.openldap.rootdn }}"
             olcRootPW: "{{ pillar.openldap.rootpw }}"
 
-manage_compunaut_rootdn_and_base:
+manage_tube_rootdn_and_base:
   ldap.managed:
     - connect_spec:
         url: ldapi:///
@@ -31,16 +31,16 @@ manage_compunaut_rootdn_and_base:
               - dcObject
               - organization
             dc:
-              - compunaut
+              - tube
             o:
-              - Compunaut
+              - Tube
             description:
-              - Compunaut Fleet Controller
+              - Peertube Admin
       - '{{ pillar.openldap.rootdn }}':
         - default:
             cn:
-              - compunaut
+              - tube
             objectClass:
               - organizationalRole
             description:
-              - CFC LDAP Admin
+              - LDAP Admin

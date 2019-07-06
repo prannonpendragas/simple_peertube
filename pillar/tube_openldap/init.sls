@@ -1,8 +1,8 @@
 include:
-  - compunaut_openldap.apache
-  - compunaut_openldap.iptables
-  - compunaut_openldap.secrets
-  - compunaut_openldap.server
+  - tube_openldap.apache
+  - tube_openldap.iptables
+  - tube_openldap.secrets
+  - tube_openldap.server
 
-compunaut_openldap:
+tube_openldap:
   enabled: True

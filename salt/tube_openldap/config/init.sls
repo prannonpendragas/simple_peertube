@@ -1,5 +1,5 @@
 include:
-  - compunaut_openldap.config.root
-  - compunaut_openldap.config.memberOf
-  - compunaut_openldap.config.certs
-  - compunaut_openldap.config.acl
+  - tube_openldap.config.root
+  - tube_openldap.config.memberOf
+  - tube_openldap.config.certs
+  - tube_openldap.config.acl

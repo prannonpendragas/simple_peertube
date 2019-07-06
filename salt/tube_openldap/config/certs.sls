@@ -32,6 +32,6 @@ manage_certificates:
       - 'cn=config':
         - replace:
             olcTLSCACertificateFile: /etc/ssl/private/ca.crt
-            olcTLSCertificateFile: /etc/ssl/private/tube-openldap.service.consul.crt
-            olcTLSCertificateKeyFile: /etc/ssl/private/tube-openldap.service.consul.key
+            olcTLSCertificateFile: /etc/ssl/private/tube-openldap.service.crt
+            olcTLSCertificateKeyFile: /etc/ssl/private/tube-openldap.service.key
             olcTLSDHParamFile: /etc/ssl/private/dhparams.pem
