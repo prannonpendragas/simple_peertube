@@ -2,11 +2,17 @@
 postgresql:
   server:
     enabled: True
-    version: 11.4
+    version: 9.5
     bind:
       address: {{ grains['ip4_interfaces']['eth0'][1] }}
       port: 5432
       protocol: tcp
+    clients:
+      - 127.0.0.1
+{%- for minion, interfaces in salt.saltutil.runner('mine.get', tgt='*', fun='network.interfaces', tgt_type='glob').items() %}
+  {%- set address = interfaces['eth0']['inet'][1]['address'] %}
+      - {{ address }}
+{%- endfor %}
     database:
 {%- for minion, database_configs in salt.saltutil.runner('mine.get', tgt='*', fun='get_postgresql_configs', tgt_type='glob').items() | unique %}
   {%- if database_configs is not none %}
