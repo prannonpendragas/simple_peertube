@@ -1,0 +1,33 @@
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+echo_red() {
+  local message=${1}
+  echo -e "${RED}\n${message}...${NC}"
+}
+
+echo_green() {
+  local message=${1}
+  echo -e "${GREEN}\n${message}...${NC}"
+}
+
+echo_blue() {
+  local message=${1}
+  echo -e "${BLUE}\n${message}...${NC}"
+}
+
+all_minion_wait() {
+  echo -e "${GREEN}\nChecking minion readiness...${NC}"
+  while [[ $(salt '*' test.ping | grep -iP "no response|not connected") ]]; do
+    echo -e "${GREEN}Not all salt minions are ready...\nWaiting 5 seconds...${NC}"
+    sleep 5
+  done
+  while [[ $(salt '*' saltutil.running | grep -i "jid") ]]; do
+    echo -e "${GREEN}Some minions are running jobs...\nWaiting 5 seconds...${NC}"
+    sleep 5
+  done
+  echo -e "${GREEN}Minions ready. Waiting 10 seconds...${NC}"
+  sleep 10
+}

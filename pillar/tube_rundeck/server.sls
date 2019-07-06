@@ -10,13 +10,13 @@ rundeck:
     server_url: https://rundeck.{{ vars.domain }}
     datasource:
       dbcreate: 'update'
-      driverClassName: 'com.mysql.jdbc.Driver'
-      url: 'jdbc:mysql://tube-mysql-database.service.consul/tube_rundeck?autoReconnect=true'
+      driverClassName: 'org.postgresql.Driver'
+      url: 'jdbc:postgresql://{{ vars.data_domain }}/tube_rundeck?autoReconnect=true'
       username: 'tube_rundeck'
       password: "{{ secrets.rundeck_database_password }}"
     extra_opts:
       rundeck.projectsStorageType: 'db'
-      dataSource.driverClassName: 'com.mysql.jdbc.Driver'
+      dataSource.driverClassName: 'org.postgresql.Driver'
       dataSource.pooled: 'true'
       dataSource.properties.testOnBorrow: 'true'
       dataSource.properties.maxActive: '200'

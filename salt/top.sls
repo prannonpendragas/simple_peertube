@@ -14,6 +14,9 @@ base:
   'not I@tube_openldap:enabled:True':
     - match: compound
     - tube_openldap
+  'tube_rundeck:enabled:True':
+    - match: pillar
+    - tube_rundeck
   '*':
     - tube_chronyd
     - tube_default

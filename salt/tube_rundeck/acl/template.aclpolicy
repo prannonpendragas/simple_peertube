@@ -1,0 +1,25 @@
+description: 'Role needed to access {{ project }} Project and Jobs'
+context:
+  project: '{{ project }}'
+for:
+  job:
+    - allow: ["read", "run"]
+  node:
+    - allow: '*'
+by:
+  group:
+    - '{{ project|lower }}'
+
+---
+
+description: 'Role needed to access {{ project }} Project and Jobs'
+context:
+  application: 'rundeck'
+for:
+  project:
+    - equals:
+        name: '{{ project }}'
+      allow: ["read"]
+by:
+  group:
+    - '{{ project|lower }}'

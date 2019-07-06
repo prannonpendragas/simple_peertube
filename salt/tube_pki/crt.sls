@@ -6,7 +6,7 @@
 /srv/salt/tube_pki/keys/{{ hostname }}.csr:
   x509.csr_managed:
     - private_key: /srv/salt/tube_pki/keys/{{ hostname }}.key
-    - CN: {{ hostname }}.{{ pillar.tube.vars.domain }}
+    - CN: {{ hostname }}
     - C: US
     - ST: Texas
     - L: Austin
@@ -22,7 +22,7 @@
     - extendedKeyUsage: 'TLS Web Server Authentication,TLS Web Client Authentication'
     - days_valid: 3650
     - days_remaining: 0
-    - CN: {{ hostname }}.{{ pillar.tube.vars.domain }}
+    - CN: {{ hostname }}
     - C: US
     - ST: Texas
     - L: Austin

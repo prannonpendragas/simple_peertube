@@ -3,6 +3,7 @@ include:
   - apache.mod_ssl
   - apache.mod_proxy
   - apache.mod_proxy_http
+  - apache.mod_headers
   - apache.config
   - apache.vhosts.standard
 

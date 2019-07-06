@@ -10,6 +10,7 @@ apache:
       interface: '*'
       port: '443'
       SSLCertificateFile: /etc/ssl/private/tube_pki.pem
+      XForwardedProto: 'https'
       DocumentRoot: /opt/443-rundeck.{{ vars.domain }}
       ProxyRequests: 'Off'
       ProxyPreserveHost: 'On'
