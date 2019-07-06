@@ -1,0 +1,3 @@
+base:
+  '*':
+    - tube_default

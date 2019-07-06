@@ -1,0 +1,38 @@
+HISTCONTROL=ignoredups:ignorespace
+shopt -s histappend
+HISTSIZE=5000
+HISTFILESIZE=10000
+
+shopt -s checkwinsize
+
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+PS1='\[\e[0;104m\]\[\e[1;92m\][\t][\u]@[\h][\w]$\[\e[0m\] '
+export PS1

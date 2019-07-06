@@ -1,9 +1,9 @@
 include:
-  - compunaut_salt.repo
-  - compunaut_salt.minion
-{%- if pillar.compunaut_salt is defined %}
-  {%- if pillar.compunaut_salt.enabled == True %}
-  - compunaut_salt.master
-  - compunaut_salt.grain
+  - tube_salt.repo
+  - tube_salt.minion
+{%- if pillar.tube_salt is defined %}
+  {%- if pillar.tube_salt.enabled == True %}
+  - tube_salt.master
+  - tube_salt.grains
   {%- endif %}
 {%- endif %}
