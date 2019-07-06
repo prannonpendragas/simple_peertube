@@ -58,14 +58,6 @@ correct_ownership_for_tube_pki.pem:
     - group: ssl-cert
     - mode: 0660
 
-/home/tube/.ssh/authorized_keys:
-  file.managed:
-    - source: salt://tube_pki/keys/id_rsa.pub
-    - makedirs: True
-    - user: tube
-    - group: tube
-    - mode: 0600
-
 {%- if pillar.tube_openldap is defined %}
   {%- if pillar.tube_openldap.enabled == True %}
 /etc/ssl/private/{{ pillar.tube.vars.master_domain }}.crt:
