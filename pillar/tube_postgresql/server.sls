@@ -4,7 +4,10 @@ postgresql:
     enabled: True
     version: 9.5
     bind:
-      address: {{ grains['ip4_interfaces']['eth0'][1] }}
+{%- if grains['ip4_interfaces']['eth0'] is defined %}
+  {%- set address = grains['ip4_interfaces']['eth0'][1] %}
+      address: {{ address }}
+{%- endif %}
       port: 5432
       protocol: tcp
     clients:

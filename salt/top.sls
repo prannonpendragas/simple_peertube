@@ -8,6 +8,9 @@ base:
   'tube_postgresql:enabled:True':
     - match: pillar
     - tube_postgresql
+  'tube_redis:enabled:True':
+    - match: pillar
+    - tube_redis
   'tube_openldap:enabled:True':
     - match: pillar
     - tube_openldap
