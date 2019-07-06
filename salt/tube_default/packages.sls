@@ -1,6 +1,7 @@
 install_default_packages:
   pkg.installed:
     - pkgs:
+      - apt-transport-https
       - curl
       - htop
       - jq

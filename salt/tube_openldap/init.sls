@@ -6,7 +6,6 @@ include:
   - tube_openldap.config
   - tube_openldap.users
   - tube_openldap.groups
-  - tube_openldap.restart
   - tube_openldap.phpldapadmin
   - tube_openldap.self_service_password
   - tube_openldap.grain
