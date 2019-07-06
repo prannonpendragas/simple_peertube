@@ -1,5 +1,5 @@
 include:
-  - compunaut_chronyd.agent
+  - tube_chronyd.agent
 
-compunaut_chronyd:
+tube_chronyd:
   enabled: True
