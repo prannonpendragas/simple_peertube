@@ -4,16 +4,13 @@
 install_peertube_dependencies:
   pkg.installed:
     - pkgs:
-      - certbot
       - curl
       - ffmpeg
       - g++
       - git
       - make
-      - nginx
       - nodejs
       - openssl
-      - python-certbot-nginx
       - python-dev
       - sudo
       - unzip

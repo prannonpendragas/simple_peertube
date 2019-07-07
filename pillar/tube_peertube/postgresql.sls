@@ -3,7 +3,7 @@
 postgresql:
   server:
     database:
-      tube_peertube:
+      peertube_simple:
         encoding: 'UTF8'
         locale: 'en_US'
         users:
