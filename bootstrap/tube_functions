@@ -18,7 +18,7 @@ echo_blue() {
   echo -e "${BLUE}\n${message}...${NC}"
 }
 
-all_minion_wait() {
+minion_wait() {
   echo -e "${GREEN}\nChecking minion readiness...${NC}"
   while [[ $(salt '*' test.ping | grep -iP "no response|not connected") ]]; do
     echo -e "${GREEN}Not all salt minions are ready...\nWaiting 5 seconds...${NC}"
