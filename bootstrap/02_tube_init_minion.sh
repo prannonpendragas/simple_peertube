@@ -8,7 +8,7 @@ read master
 
 sed -ri 's/^\%sudo\s+ALL=\(ALL:ALL\)+\sALL$/\%sudo\tALL=\(ALL:ALL\)\ NOPASSWD:ALL/g' /etc/sudoers
 
-hostnamectl set-hostname video01.tube.prannon.net
+hostnamectl set-hostname ${minion}
 
 if [[ ! `grep -P "127.0.1.1\s+${minion}" /etc/hosts` ]]; then  
   echo "127.0.1.1 ${minion}" | tee -a /etc/hosts
