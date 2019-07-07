@@ -4,7 +4,7 @@ letsencrypt:
   pkgs:
     - python-certbot-nginx
   config: |
-    server = https://acme-staging-v02.api.letsencrypt.org/directory # By default, staging; Set to prod if you're doing this for real: https://acme-v01.api.letsencrypt.org/directory
+    server = https://acme-v01.api.letsencrypt.org/directory
     email = admin@{{ vars.domain }}
     post-hook = systemctl restart nginx
     authenticator = nginx
