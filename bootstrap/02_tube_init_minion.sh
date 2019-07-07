@@ -16,7 +16,6 @@ fi
 
 apt-get -qq update
 apt-get -q dist-upgrade -y
-reboot
 
 if [[ ! $(dpkg -l | egrep 'salt-master|salt-minion') ]]; then
   if [[ ! $(apt-key list | grep "SaltStack Packaging Team") ]]; then
@@ -35,3 +34,4 @@ fi
 systemctl restart salt-minion
 
 apt autoremove -y
+reboot
