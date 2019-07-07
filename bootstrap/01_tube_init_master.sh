@@ -29,3 +29,6 @@ sed -ri 's/^127.0.0.1\s+localhost$/127.0.0.1\tlocalhost\ salt/g' /etc/hosts
 systemctl restart salt-minion
 sleep 60
 salt-key -A -y
+
+apt autoremove -y
+reboot
