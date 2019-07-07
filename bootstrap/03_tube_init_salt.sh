@@ -21,13 +21,15 @@ source ./tube_functions
   echo_red "DEPLOY SIMPLE PEERTUBE"
   echo_blue "Install DNS"
   time salt-run state.orch orch.install_dns --state-output=mixed --log-level=quiet
-  time salt-run state.orch orch.update_data --state-output=mixed --log-level=quiet # update data
-
-  echo_blue "Install OpenLDAP"
-  time salt-run state.orch orch.install_openldap --state-output=mixed --log-level=quiet
 
   echo_blue "Install PostgreSQL"
   time salt-run state.orch orch.install_postgresql --state-output=mixed --log-level=quiet
+
+  echo_blue "Install Redis"
+  time salt-run state.orch orch.install_redis --state-output=mixed --log-level=quiet
+
+  echo_blue "Install OpenLDAP"
+  time salt-run state.orch orch.install_openldap --state-output=mixed --log-level=quiet
 
   echo_blue "Install Rundeck"
   time salt-run state.orch orch.install_rundeck --state-output=mixed --log-level=quiet

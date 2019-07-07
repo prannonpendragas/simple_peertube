@@ -10,6 +10,10 @@ tube:
       ldap_rootpw: "{CRYPT}{{ ldap_crypt_rootpw }}"
       ldap_unencrypted_rootpw: "{{ ldap_rootpw }}"
 
+    peertube:
+{%- set peertube_db_password = salt['cmd.shell']('echo '+id|string+' | sha384sum | sha1sum | cut -d- -f1' ) %}
+      peertube_database_password: "{{ peertube_db_password }}"
+
     rundeck:
 {%- set rundeck_uuid = salt['cmd.shell']('uuidgen') %}
 {%- set rundeck_db_password = salt['cmd.shell']('echo '+id|string+' | sha256sum | sha1sum | cut -d- -f1' ) %}

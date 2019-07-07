@@ -6,6 +6,8 @@ base:
     - tube_openldap
     - tube_rundeck
     - tube_salt
+  '*video*':
+    - tube_peertube
   '*':
     - tube_chronyd
     - tube_default

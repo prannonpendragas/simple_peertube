@@ -20,6 +20,9 @@ base:
   'tube_rundeck:enabled:True':
     - match: pillar
     - tube_rundeck
+  'tube_peertube:enabled:True':
+    - match: pillar
+    - tube_peertube
   '*':
     - tube_chronyd
     - tube_default
