@@ -47,7 +47,7 @@ peertube:
           enabled: true
     instance:
       name: 'Simple Peertube'
-      short_description: 'A simple ready-to-scale Peertube Instance.'
+      short_description: 'A simple Peertube Instance.'
       description: ''
       terms: ''
       default_client_route: '/videos/trending'
