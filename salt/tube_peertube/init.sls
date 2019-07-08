@@ -6,4 +6,3 @@ include:
   - tube_peertube.config
   - tube_peertube.restart
   - nginx
-  - letsencrypt

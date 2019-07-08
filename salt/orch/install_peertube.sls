@@ -4,3 +4,4 @@ install_peertube:
     - tgt_type: pillar
     - sls:
       - tube_peertube
+      - letsencrypt
