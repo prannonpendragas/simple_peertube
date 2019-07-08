@@ -17,7 +17,7 @@ postgresql:
       - {{ address }}
 {%- endfor %}
     database:
-{%- for minion, database_configs in salt.saltutil.runner('mine.get', tgt='*', fun='get_postgresql_configs', tgt_type='glob').items() | unique %}
+{%- for minion, database_configs in salt.saltutil.runner('mine.get', tgt='not I@tube_postgresql:enabled:True', fun='get_postgresql_configs', tgt_type='compound').items() | unique %}
   {%- if database_configs is not none %}
     {%- for database_config, parameters in database_configs.items() %}
       {%- if 'database' in database_config %}

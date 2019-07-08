@@ -27,7 +27,7 @@ nginx:
               - return: 301 https://$host$request_uri
 
       https_{{ vars.domain }}:
-        enabled: True # Set to false for the initial run; Once certbot certs are configured, then set to True
+        enabled: False # Set to false for the initial run; Once certbot certs are configured, then set to True
         overwrite: True
         config:
           # Refer to https://github.com/Chocobozzz/PeerTube/blob/develop/support/nginx/peertube

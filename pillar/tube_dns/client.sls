@@ -2,8 +2,10 @@ dnsmasq:
   dnsmasq_conf: salt://dnsmasq/files/dnsmasq.conf
   settings:
     port: 53
+{%- for minion, vars in salt.saltutil.runner('mine.get', tgt='tube_salt:enabled:True', fun='get_vars', tgt_type='pillar').items() %}
     server: 
-      - 192.168.220.5
+      - {{ vars.master_ip }}
+{%- endfor %}
     no-resolv: True
     conf-dir: /etc/dnsmasq.d
     bind-dynamic: True
