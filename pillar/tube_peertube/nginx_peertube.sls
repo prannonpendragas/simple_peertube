@@ -26,7 +26,7 @@ nginx:
             - location /:
               - return: 301 https://$host$request_uri
 
-      https_{{ vars.domain }}:
+      https_www.{{ vars.domain }}:
         enabled: False # Set to false for the initial run; Once certbot certs are configured, then set to True
         overwrite: True
         config:
@@ -34,6 +34,37 @@ nginx:
           - server:
             - server_name:
               - www.{{ vars.domain }}
+
+            - listen:
+              - '443 ssl http2'
+              - '[::]:443 ssl http2'
+
+            - access_log: /var/log/nginx/{{ vars.domain }}.access.log
+            - error_log: /var/log/nginx/{{ vars.domain }}.error.log
+
+            - ssl_certificate: /etc/letsencrypt/live/{{ vars.domain }}/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/{{ vars.domain }}/privkey.pem
+            - ssl_protocols: TLSv1.2
+            - ssl_prefer_server_ciphers: "on"
+            - ssl_ciphers: 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256'
+            - ssl_session_timeout: 10m
+            - ssl_session_cache: shared:SSL:10m
+            - ssl_session_tickets: "off"
+            - ssl_stapling: "on"
+            - ssl_stapling_verify: "on"
+
+            - add_header: "Strict-Transport-Security 'max-age=63072000; includeSubDomains'"
+
+            - location /:
+              - return: 301 https://{{ vars.domain }}$request_uri
+
+      https_{{ vars.domain }}:
+        enabled: False # Set to false for the initial run; Once certbot certs are configured, then set to True
+        overwrite: True
+        config:
+          # Refer to https://github.com/Chocobozzz/PeerTube/blob/develop/support/nginx/peertube
+          - server:
+            - server_name:
               - {{ vars.domain }}
 
             - listen:
