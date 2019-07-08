@@ -8,7 +8,7 @@
 /var/www/peertube/storage:
   file.directory:
     - user: peertube
-    - group: peertube
+    - group: www-data
     - dir_mode: 0750
     - makedirs: True
 
