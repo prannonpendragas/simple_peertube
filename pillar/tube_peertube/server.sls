@@ -6,16 +6,21 @@ peertube:
     trust_proxy: 
       - 'loopback'
     database:
-      hostname: {{ vars.data_domain }}
+  {%- for minion, interfaces in salt.saltutil.runner('mine.get', tgt='tube_postgresql:enabled:True', fun='network.interfaces', tgt_type='pillar').items() %}
+    {%- if interfaces['eth0'] is defined %}
+      {%- set data_addr = interfaces['eth0']['inet'][1]['address'] %}
+      hostname: {{ data_addr }}
       port: 5432
       suffix: _simple
       username: tube_peertube
-  {%- for minion, secrets in salt.saltutil.runner('mine.get', tgt='tube_salt:enabled:True', fun='get_peertube_secrets', tgt_type='pillar').items() %}
+      {%- for minion, secrets in salt.saltutil.runner('mine.get', tgt='tube_salt:enabled:True', fun='get_peertube_secrets', tgt_type='pillar').items() %}
       password: {{ secrets.peertube_database_password }}
-  {%- endfor %}
+      {%- endfor %}
     redis:
-      hostname: {{ vars.data_domain }}
+      hostname: {{ data_addr }}
       port: 6379
+    {%- endif %}
+  {%- endfor %}
     admin:
       email: admin@{{ vars.domain }}
 {%- endfor %}

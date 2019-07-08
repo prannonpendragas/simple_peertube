@@ -38,8 +38,8 @@ apache:
       ProxyRoute:
         route_to_local_ldap:
           ProxyPassSource: '/'
-          ProxyPassTarget: 'http://localhost:80/'
+          ProxyPassTarget: 'http://localhost:80/phpldapadmin/'
           ProxyPassTargetOptions: 'connectiontimeout=10 timeout=90'
           ProxyPassReverseSource: '/'
-          ProxyPassReverseTarget: 'http://localhost:80/'
+          ProxyPassReverseTarget: 'http://localhost:80/phpldapadmin/'
 {%- endfor %}
