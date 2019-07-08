@@ -28,7 +28,7 @@ peertube:
     transcoding:
       enabled: true
       allow_additional_extensions: true
-      threads: 1
+      threads: 2
       resolutions:
         twofourty: true
         threesixty: true
