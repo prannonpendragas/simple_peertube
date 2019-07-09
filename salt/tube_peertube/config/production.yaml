@@ -44,14 +44,14 @@ redis:
 
 # SMTP server to send emails
 smtp:
-  hostname: null
-  port: 465 # If you use StartTLS: 587
+  hostname: {{ pillar.peertube.server.smtp.hostname }}
+  port: {{ pillar.peertube.server.smtp.port }} # If you use StartTLS: 587
   username: null
   password: null
-  tls: true # If you use StartTLS: false
-  disable_starttls: false
-  ca_file: null # Used for self signed certificates
-  from_address: 'admin@example.com'
+  tls: {{ pillar.peertube.server.smtp.tls }} # If you use StartTLS: false
+  disable_starttls: {{ pillar.peertube.server.smtp.disable_starttls }}
+  ca_file: {{pillar.peertube.server.smtp.ca_file }} # Used for self signed certificates
+  from_address: '{{ pillar.peertube.server.admin.email }}'
 
 # From the project root directory
 storage:

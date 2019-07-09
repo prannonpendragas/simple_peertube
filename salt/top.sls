@@ -5,6 +5,9 @@ base:
   'tube_dns:enabled:True':
     - match: pillar
     - tube_dns
+  'tube_postfix:enabled:True':
+    - match: pillar
+    - tube_postfix
   'tube_postgresql:enabled:True':
     - match: pillar
     - tube_postgresql

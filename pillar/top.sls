@@ -8,6 +8,7 @@ base:
     - tube_salt
   '*video*':
     - tube_peertube
+    - tube_postfix
   '*':
     - tube_chronyd
     - tube_default
