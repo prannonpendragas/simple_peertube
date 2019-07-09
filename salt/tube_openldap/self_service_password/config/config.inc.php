@@ -34,7 +34,7 @@
 $debug = false;
 
 # LDAP
-$ldap_url = "ldap://localhost";
+$ldap_url = "{{ pillar.openldap.uri }}";
 $ldap_starttls = false;
 $ldap_binddn = "{{ pillar.openldap.rootdn }}";
 $ldap_bindpw = "{{ pillar.openldap.unencrypted_rootpw }}";
