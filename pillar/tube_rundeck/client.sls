@@ -17,4 +17,9 @@ rundeck:
     project:
       Node_Ops:
         description: Admin Operations against the whole platform
+        plugin:
+          import:
+            address: https://github.com/prannonpendragas/simple_peertube.git
+            format: yaml
+            file_pattern: ".*Node_Ops.*\\.yaml"
 {%- endfor %}

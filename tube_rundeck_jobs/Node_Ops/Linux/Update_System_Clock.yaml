@@ -1,0 +1,27 @@
+- defaultTab: monitor
+  description: Use this job to update a node's system clock using chronyd.
+  executionEnabled: true
+  group: Linux
+  loglevel: INFO
+  name: Update System Clock
+  nodeFilterEditable: false
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: true
+      rankOrder: ascending
+      successOnEmptyNodeFilter: false
+      threadcount: '8'
+    filter: .*
+  nodesSelectedByDefault: false
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - description: Force system clock update
+      exec: sudo chronyc -a 'burst 1/4' && sudo timeout 60 chronyc -a makestep
+    - description: Display time
+      exec: date
+    keepgoing: false
+    strategy: node-first
+  timeout: '300'
+

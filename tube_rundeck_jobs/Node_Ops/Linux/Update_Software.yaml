@@ -1,0 +1,25 @@
+- defaultTab: monitor
+  description: Use this job to run a general software update.
+  executionEnabled: true
+  group: Linux
+  loglevel: INFO
+  name: Update Software
+  nodeFilterEditable: false
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: true
+      rankOrder: ascending
+      successOnEmptyNodeFilter: false
+      threadcount: '8'
+    filter: .*
+  nodesSelectedByDefault: false
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - description: Update Software
+      exec: sudo apt-get update && sudo apt-get -o Dpkg::Options::='--force-confold' --force-yes -fuy dist-upgrade && sudo apt autoremove -y
+    keepgoing: false
+    strategy: node-first
+  timeout: '6000'
+
