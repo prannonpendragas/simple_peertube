@@ -8,7 +8,7 @@ python-m2crypto:
 /srv/salt/tube_pki/keys/ca.crt:
   x509.certificate_managed:
     - signing_private_key: /srv/salt/tube_pki/keys/ca.key
-    - CN: ca.tube.prannon.net
+    - CN: ca.{{ pillar.tube.vars.domain }}
     - C: US
     - ST: Texas
     - L: Austin

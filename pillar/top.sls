@@ -1,14 +1,13 @@
 base:
-  '*data*':
+  '*peppercorn*':
+    - tube_peertube
+    - tube_postfix
     - tube_postgresql
     - tube_redis
-  '*master*':
+  '*kimchi*':
     - tube_openldap
     - tube_rundeck
     - tube_salt
-  '*video*':
-    - tube_peertube
-    - tube_postfix
   '*':
     - tube_chronyd
     - tube_default

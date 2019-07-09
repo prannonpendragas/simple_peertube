@@ -1,10 +1,10 @@
 tube:
   vars:
-    domain: "peertube.prannon.net"
+    domain: "greatview.video"
     private_net: "192.168.0"
-    master_ip: "192.168.218.50"
-    master_domain: "master01.peertube.prannon.net.private"
-    data_domain: "data01.peertube.prannon.net.private"
-    video_domain: "video01.peertube.prannon.net.private"
+    master_ip: "192.168.156.10"
+    master_domain: "kimchi.greatview.video.private"
+    data_domain: "peppercorn.greatview.video.private"
+    video_domain: "peppercorn.greatview.video.private"
     public_net: "0.0.0"
     

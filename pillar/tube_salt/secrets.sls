@@ -5,8 +5,8 @@ tube:
 {%- set ldap_rootpw = salt['cmd.shell']("echo "+id|string+" | sha1sum | cut -d- -f1") %}
 {%- set ldap_crypt_salt = salt['cmd.shell']("head /dev/urandom | tr -dc A-Za-z0-9 | head -c4") %}
 {%- set ldap_crypt_rootpw = salt['cmd.shell']("openssl passwd -1 -salt "+ldap_crypt_salt+" "+ldap_rootpw+" 2> /dev/null") %}
-      ldap_base: "dc=tube,dc=prannon,dc=net"
-      ldap_rootdn: "cn=master,dc=tube,dc=prannon,dc=net"
+      ldap_base: "dc=greatview,dc=video"
+      ldap_rootdn: "cn=master,dc=greatview,dc=video"
       ldap_rootpw: "{CRYPT}{{ ldap_crypt_rootpw }}"
       ldap_unencrypted_rootpw: "{{ ldap_rootpw }}"
 
