@@ -6,3 +6,4 @@ include:
   - tube_peertube.config
   - tube_peertube.restart
   - nginx
+  - tube_peertube.grain
