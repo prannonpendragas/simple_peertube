@@ -41,6 +41,8 @@ source ./tube_functions
   minion_wait
 
   echo_red "DEPLOY SIMPLE PEERTUBE"
+  time salt-run state.orch orch.update_data --state-output=mixed --log-level=quiet # update data
+
   echo_blue "Install DNS"
   time salt-run state.orch orch.install_dns --state-output=mixed --log-level=quiet
 
