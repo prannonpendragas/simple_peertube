@@ -6,7 +6,6 @@ peertube_group:
 peertube:
   user.present:
     - shell: /bin/bash
-    - home: /var/www/peertube
     - uid: 9202
     - allow_uid_change: true
     - allow_gid_change: true
