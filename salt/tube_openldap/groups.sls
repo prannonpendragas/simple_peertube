@@ -47,6 +47,19 @@ manage_tube_login_groups:
               - tube_system
             description:
               - Sudoers; Add users to this group if they should have sudoers access to linux
+      - 'cn=tube_peertube,ou=Groups,{{ pillar.openldap.base }}':
+        - add:
+            cn:
+              - peertube
+              - tube_peertube
+            objectClass:
+              - top
+              - posixGroup
+            gidNumber: 9202
+            memberUid:
+              - tube_system
+            description:
+              - Sudoers; Add users to this group if they should have access to the peertube group
       - 'cn=tube_linux,ou=Groups,{{ pillar.openldap.base }}':
         - add:
             cn:
