@@ -14,6 +14,12 @@ letsencrypt:
     www:
       - www.{{ vars.domain }}
       - {{ vars.domain }}
+      - www.ldap.{{ vars.domain }}
+      - ldap.{{ vars.domain }}
+      - www.password.{{ vars.domain }}
+      - password.{{ vars.domain }}
+      - www.rundeck.{{ vars.domain }}
+      - rundeck.{{ vars.domain }}
   post_renew:
     cmds:
       - systemctl restart nginx
