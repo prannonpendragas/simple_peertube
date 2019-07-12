@@ -17,6 +17,10 @@ nginx:
             - access_log: /var/log/nginx/ldap.{{ vars.domain }}.access.log
             - error_log: /var/log/nginx/ldap.{{ vars.domain }}.error.log
 
+            - location /.well-known/acme-challenge/:
+              - default_type: "'text/plain'"
+              - root: /var/www/certbot
+
             - location /:
               - return: 301 https://$host$request_uri
 
@@ -76,6 +80,10 @@ nginx:
             - gzip: "on"
             - gzip_types: text/css application/javascript
             - gzip_vary: "on"
+
+            - location /.well-known/acme-challenge/:
+              - default_type: "'text/plain'"
+              - root: /var/www/certbot
 
             - location /:
               - proxy_read_timeout: 1200s
