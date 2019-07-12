@@ -38,8 +38,8 @@ nginx:
             - access_log: /var/log/nginx/rundeck.{{ vars.domain }}.access.log
             - error_log: /var/log/nginx/rundeck.{{ vars.domain }}.error.log
 
-            - ssl_certificate: /etc/ssl/private/tube_pki.crt
-            - ssl_certificate_key: /etc/ssl/private/tube_pki.key
+            - ssl_certificate: /etc/letsencrypt/live/www.{{ vars.domain }}/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/www.{{ vars.domain }}/privkey.pem
             - ssl_protocols: TLSv1.2
             - ssl_prefer_server_ciphers: "on"
             - ssl_ciphers: 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256'
@@ -66,8 +66,8 @@ nginx:
             - access_log: /var/log/nginx/rundeck.{{ vars.domain }}.access.log
             - error_log: /var/log/nginx/rundeck.{{ vars.domain }}.error.log
 
-            - ssl_certificate: /etc/ssl/private/tube_pki.crt
-            - ssl_certificate_key: /etc/ssl/private/tube_pki.key
+            - ssl_certificate: /etc/letsencrypt/live/www.{{ vars.domain }}/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/www.{{ vars.domain }}/privkey.pem
             - ssl_protocols: TLSv1.2
             - ssl_prefer_server_ciphers: "on"
             - ssl_ciphers: 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256'
