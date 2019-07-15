@@ -1,3 +1,6 @@
+{% set version = "v1.3.1" %}
+{% set hash = "20957d28c8758759d97c61f82f9baaabf8cb1dbce2c43b4c97792b75dd40ec23" %}
+
 /var/www/peertube/config:
   file.directory:
     - user: peertube
@@ -16,13 +19,13 @@
   file.directory:
     - user: peertube
     - group: www-data
-    - dir_mode: 0750
+    - dir_mode: 0755
     - makedirs: True
 
 /var/www/peertube/versions/:
   archive.extracted:
-    - source: https://github.com/Chocobozzz/PeerTube/releases/download/v1.3.1/peertube-v1.3.1.zip
-    - source_hash: 20957d28c8758759d97c61f82f9baaabf8cb1dbce2c43b4c97792b75dd40ec23
+    - source: https://github.com/Chocobozzz/PeerTube/releases/download/{{ version }}/peertube-{{ version }}.zip
+    - source_hash: {{ hash }}
     - archive_format: zip
     - user: peertube
     - group: peertube
@@ -31,7 +34,7 @@
 
 /var/www/peertube/peertube-latest:
   file.symlink:
-    - target: /var/www/peertube/versions/peertube-v1.3.1
+    - target: /var/www/peertube/versions/peertube-{{ version }}
     - user: peertube
     - group: www-data
     - makedirs: True
@@ -43,3 +46,33 @@ install_peertube:
     - cwd: /var/www/peertube/peertube-latest
     - runas: peertube
     - name: yarn install --production --pure-lockfile
+
+/var/www/peertube/versions/peertube-{{ version }}/client/dist/en_US:
+  file.directory:
+    - user: peertube
+    - group: peertube
+    - dir_mode: 0775
+    - require:
+      - cmd: install_peertube
+  cmd.run:
+    - name: find /var/www/peertube/versions/peertube-{{ version }}/client/dist/en_US -type f -exec chmod 0664 {} \;
+    - runas: root
+    - require:
+      - cmd: install_peertube
+
+/var/www/peertube/versions/peertube-{{ version }}/client/dist/assets/images:
+  file.directory:
+    - user: peertube
+    - group: peertube
+    - dir_mode: 0775
+    - recurse:
+      - user
+      - group
+      - mode
+    - require:
+      - cmd: install_peertube
+  cmd.run:
+    - name: find /var/www/peertube/versions/peertube-{{ version }}/client/dist/assets/images -type f -exec chmod 0664 {} \;
+    - runas: root
+    - require:
+      - cmd: install_peertube

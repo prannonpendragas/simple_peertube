@@ -17,11 +17,15 @@ nginx:
             - access_log: /var/log/nginx/ldap.{{ vars.domain }}.access.log
             - error_log: /var/log/nginx/ldap.{{ vars.domain }}.error.log
 
+            - location /.well-known/acme-challenge/:
+              - default_type: "'text/plain'"
+              - root: /var/www/certbot
+
             - location /:
               - return: 301 https://$host$request_uri
 
       https_www.ldap.{{ vars.domain }}:
-        enabled: True
+        enabled: False # Set to false for the initial run; Once certbot certs are configured, then set to True
         config:
           - server:
             - server_name:
@@ -34,8 +38,8 @@ nginx:
             - access_log: /var/log/nginx/ldap.{{ vars.domain }}.access.log
             - error_log: /var/log/nginx/ldap.{{ vars.domain }}.error.log
 
-            - ssl_certificate: /etc/ssl/private/tube_pki.crt
-            - ssl_certificate_key: /etc/ssl/private/tube_pki.key
+            - ssl_certificate: /etc/letsencrypt/live/www.{{ vars.domain }}/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/www.{{ vars.domain }}/privkey.pem
             - ssl_protocols: TLSv1.2
             - ssl_prefer_server_ciphers: "on"
             - ssl_ciphers: 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256'
@@ -49,7 +53,7 @@ nginx:
               - return: 301 https://ldap.{{ vars.domain }}$request_uri
 
       https_ldap.{{ vars.domain }}:
-        enabled: True
+        enabled: False # Set to false for the initial run; Once certbot certs are configured, then set to True
         config:
           - server:
             - server_name:
@@ -62,8 +66,8 @@ nginx:
             - access_log: /var/log/nginx/ldap.{{ vars.domain }}.access.log
             - error_log: /var/log/nginx/ldap.{{ vars.domain }}.error.log
 
-            - ssl_certificate: /etc/ssl/private/tube_pki.crt
-            - ssl_certificate_key: /etc/ssl/private/tube_pki.key
+            - ssl_certificate: /etc/letsencrypt/live/www.{{ vars.domain }}/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/www.{{ vars.domain }}/privkey.pem
             - ssl_protocols: TLSv1.2
             - ssl_prefer_server_ciphers: "on"
             - ssl_ciphers: 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256'
@@ -76,6 +80,10 @@ nginx:
             - gzip: "on"
             - gzip_types: text/css application/javascript
             - gzip_vary: "on"
+
+            - location /.well-known/acme-challenge/:
+              - default_type: "'text/plain'"
+              - root: /var/www/certbot
 
             - location /:
               - proxy_read_timeout: 1200s
