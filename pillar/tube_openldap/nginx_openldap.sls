@@ -25,7 +25,7 @@ nginx:
               - return: 301 https://$host$request_uri
 
       https_www.ldap.{{ vars.domain }}:
-        enabled: True
+        enabled: False # Set to false for the initial run; Once certbot certs are configured, then set to True
         config:
           - server:
             - server_name:
@@ -53,7 +53,7 @@ nginx:
               - return: 301 https://ldap.{{ vars.domain }}$request_uri
 
       https_ldap.{{ vars.domain }}:
-        enabled: True
+        enabled: False # Set to false for the initial run; Once certbot certs are configured, then set to True
         config:
           - server:
             - server_name:

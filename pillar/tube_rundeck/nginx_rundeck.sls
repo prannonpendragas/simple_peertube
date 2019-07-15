@@ -25,7 +25,7 @@ nginx:
               - return: 301 https://$host$request_uri
 
       https_www.rundeck.{{ vars.domain }}:
-        enabled: True
+        enabled: False # Set to false for the initial run; Once certbot certs are configured, then set to True
         config:
           - server:
             - server_name:
@@ -53,7 +53,7 @@ nginx:
               - return: 301 https://rundeck.{{ vars.domain }}$request_uri
 
       https_rundeck.{{ vars.domain }}:
-        enabled: True
+        enabled: # Set to false for the initial run; Once certbot certs are configured, then set to True
         config:
           - server:
             - server_name:
