@@ -23,7 +23,7 @@ manage_tube_login_groups:
             member:
               - cn=tube_system,ou=Users,{{ pillar.openldap.base }}
             description:
-              - Group for LDAP Administration rights
+              - Add users to this group if they need to be able to modify existing users and groups. USERS IN THIS GROUP CANNOT CREATE/DELETE USERS OR GROUPS.
       - 'cn=tube_users,ou=Groups,{{ pillar.openldap.base }}':
         - add:
             cn:
@@ -46,7 +46,7 @@ manage_tube_login_groups:
             memberUid:
               - tube_system
             description:
-              - Sudoers; Add users to this group if they should have sudoers access to linux
+              - Add users to this group if they should have ROOT access to the linux servers.
       - 'cn=tube_peertube,ou=Groups,{{ pillar.openldap.base }}':
         - add:
             cn:
@@ -59,7 +59,7 @@ manage_tube_login_groups:
             memberUid:
               - tube_system
             description:
-              - Sudoers; Add users to this group if they should have access to the peertube group
+              - Add users to this group if they should have access to the peertube site files.
       - 'cn=tube_linux,ou=Groups,{{ pillar.openldap.base }}':
         - add:
             cn:
@@ -70,7 +70,7 @@ manage_tube_login_groups:
             member:
               - cn=tube_system,ou=Users,{{ pillar.openldap.base }}
             description:
-              - Group for Linux Access; Add users to sudo if they should also have sudoers access
+              - Add users to this group if they should be able to log into the linux servers. This is useful for SFTP or SSH access.
       - 'cn=rundeck_admin,ou=Groups,{{ pillar.openldap.base }}':
         - add:
             cn:
@@ -81,7 +81,7 @@ manage_tube_login_groups:
             member:
               - cn={{ pillar.openldap.secrets.rundeck_admin_user }},ou=Users,{{ pillar.openldap.base }}
             description:
-              - Group for Rundeck Admins
+              - Group for Rundeck Admins.
 {%- for minion, projects in salt['mine.get']('tube_rundeck:enabled:True', fun='get_rundeck_projects', tgt_type='pillar').iteritems() %}
   {%- if projects is defined %}
     {%- for project, args in projects.items() %}
@@ -96,7 +96,7 @@ manage_tube_login_groups:
             member:
               - cn={{ pillar.openldap.secrets.rundeck_admin_user }},ou=Users,{{ pillar.openldap.base }}
             description:
-              - Group for access to the {{ project }} project
+              - Group for access to the {{ project }} Rundeck project.
         {% do existing_groups.append(project) %}
       {%- endif %}
     {%- endfor %}
