@@ -22,4 +22,11 @@ rundeck:
             address: https://github.com/prannonpendragas/simple_peertube.git
             format: yaml
             file_pattern: ".*Node_Ops.*\\.yaml"
+      Peertube_Ops:
+        description: Operations affecting Peertube only
+        plugin:
+          import:
+            address: https://github.com/prannonpendragas/simple_peertube.git
+            format: yaml
+            file_pattern: ".*Peertube_Ops.*\\.yaml"
 {%- endfor %}
