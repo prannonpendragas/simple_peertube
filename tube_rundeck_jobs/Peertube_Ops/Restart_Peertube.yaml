@@ -1,0 +1,27 @@
+- defaultTab: summary
+  description: |-
+    Use this job to restart the peertube service.
+    - This is necessary if you are making manual changes to files on the server.
+  executionEnabled: true
+  group: Peertube
+  loglevel: INFO
+  name: Restart Peertube
+  nodeFilterEditable: false
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: false
+      rankOrder: ascending
+      successOnEmptyNodeFilter: false
+      threadcount: '1'
+    filter: 'tags: peertube_server'
+  nodesSelectedByDefault: true
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - description: Restart Peertube
+      exec: sudo systemctl restart peertube
+    keepgoing: false
+    strategy: node-first
+  timeout: '300'
+
